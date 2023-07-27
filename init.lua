@@ -15,6 +15,9 @@ require('packer').startup(function(use)
     -- Package manager
     use 'wbthomason/packer.nvim'
 
+    -- Faster startup
+    use 'lewis6991/impatient.nvim'
+
     -- Theme
     use 'Mofiqul/dracula.nvim'
     use 'folke/tokyonight.nvim'
