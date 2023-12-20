@@ -1,3 +1,5 @@
-# neovim
+# configs 
 
-Configs for fzf in bash and fish shell
+* Neovim
+* fzf for bash and fish
+

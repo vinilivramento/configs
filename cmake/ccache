@@ -1,0 +1,5 @@
+# Location: ~/.ccache/ccache.conf
+
+max_size = 15.0G
+cache_dir = path/to/directory 
+prefix_command=/command/to/be/executed

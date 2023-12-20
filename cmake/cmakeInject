@@ -1,0 +1,17 @@
+# Can use the following alias to have cmake always including the following config below: alias cmake "cmake -DCMAKE_PROJECT_INCLUDE=~/.inject.cmake"
+
+# add following to inject.cmake file in home
+
+if (NOT CUSTOMIZATION_INJECTED)
+  message(STATUS "Injecting cmake config")
+
+  set(CMAKE_CXX_COMPILER_LAUNCHER "/usr/bin/ccache")
+  set(CMAKE_CXX_LINKER_LAUNCHER "/usr/bin/ccache")
+
+  set(COMMON_CXX_FLAGS "-fdiagnostics-color=always") 
+
+  set(CMAKE_CXX_FLAGS "$(COMMON_CXX_FLAGS)")
+
+  set(CUSTOMIZATION_INJECTED TRUE)
+endif()
+
