@@ -1,3 +1,5 @@
+set -g theme_color_scheme zenburn
+
 set -U FZF_LEGACY_KEYBINDINGS 0
 set -x EDITOR nvim
 
