@@ -12,6 +12,7 @@ end
 local packer_bootstrap = ensure_packer()
 
 require('packer').startup(function(use)
+
     -- Package manager
     use 'wbthomason/packer.nvim'
 
@@ -37,15 +38,18 @@ require('packer').startup(function(use)
     use 'hrsh7th/vim-vsnip'
     use 'nvim-treesitter/nvim-treesitter'
 
+    -- Setup and config rust_analyzer
+    use 'simrat39/rust-tools.nvim'
+
     -- Telescope 
     use {
-  	'nvim-telescope/telescope.nvim', tag = '0.1.2',
-	  requires = { {'nvim-lua/plenary.nvim'} }
+  	    'nvim-telescope/telescope.nvim', tag = '0.1.2',
+	    requires = { {'nvim-lua/plenary.nvim'} }
     }
 
     -- File explorer nvim-tree
     use {
-  	'nvim-tree/nvim-tree.lua',
+  	    'nvim-tree/nvim-tree.lua',
     	requires = {
         'nvim-tree/nvim-web-devicons', -- optional, for file icons
     	},
@@ -55,11 +59,11 @@ require('packer').startup(function(use)
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-     }
+    }
 
      -- Pair brackets
-     use {
-	      "windwp/nvim-autopairs",
+    use {
+	    'windwp/nvim-autopairs',
         config = function() require("nvim-autopairs").setup {} end
     }
 
@@ -67,15 +71,26 @@ require('packer').startup(function(use)
     use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
 
     -- Indent lines
-    use "lukas-reineke/indent-blankline.nvim"
+    use 'lukas-reineke/indent-blankline.nvim'
+
+    -- Comment block
+    use 'terrortylor/nvim-comment'
+
+    -- terminal emulator
+    use 'akinsho/toggleterm.nvim'
+
 end)
 
-require('config')
-require('theme')
-require('lsp')
-require('telescope')
-require('file-explorer')
-require('status-bar')
-require('buffer-line')
-require('code-style')
-require('clangd')
+require('user.config')
+
+require('user.bufferline')
+require('user.code-style')
+require('user.clangd')
+require('user.lsp')
+require('user.lualine')
+require('user.nvim-comment')
+require('user.nvim-tree')
+require('user.rust-tools')
+require('user.telescope')
+require('user.theme')
+require('user.toggleterm')
