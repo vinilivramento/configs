@@ -79,6 +79,14 @@ require('packer').startup(function(use)
     -- terminal emulator
     use 'akinsho/toggleterm.nvim'
 
+    -- diagnostics list
+    use {'folke/trouble.nvim', requires = 'nvim-tree/nvim-web-devicons'}
+
+    -- test runner
+    use { 'klen/nvim-test',
+          config = function() require('nvim-test').setup() end
+    }
+
 end)
 
 require('user.config')
@@ -88,6 +96,7 @@ require('user.code-style')
 require('user.lsp')
 require('user.lualine')
 require('user.nvim-comment')
+require('user.nvim-test')
 require('user.nvim-tree')
 require('user.telescope')
 require('user.theme')
