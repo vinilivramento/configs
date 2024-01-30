@@ -22,9 +22,36 @@
 * Single-letter project commands [projectdo](https://github.com/paldepind/projectdo)
     * download [script](https://raw.githubusercontent.com/paldepind/projectdo/master/projectdo) and put in path 
 
-* Editor [neovim](https://github.com/neovim/neovim)
+* Editor [neovim](https://github.com/neovim/neovim) 
     * install most recent released [binary](https://github.com/neovim/neovim/releases/) and put in path
-* vim 
-* fzf for bash and fish
-* cmake
-* clang-format
+    * configure: ```cp -r nvim ~/.config```
+    * open nvim and install all plugins by running ```PackerInstall```
+    * open nvim and install all plugins by running ```PackerInstall```
+    * Use [Mason](https://github.com//packer.nvim) to install LSP tooling: ```bash-language-server pyright rust-analyzer codelldb```
+
+* Editor [vim]:
+  * basic configuration: ```cp vimrc ~/.vimrc```
+
+* Rust Configuration and Tooling
+    * install [rustup](https://www.rust-lang.org/tools/install) and run ```rustup update```
+    * install [cargo-modules](https://github.com/regexident/cargo-modules): ```cargo install cargo-modules``` 
+    * install [cargo-nextest](https://nexte.st/book/installation.html): ```cargo install cargo-nextest```
+
+* C++ Configuration and Tooling
+    * install clang, clangd and clang-format via package manager
+    * setup generic clangd config: ```cp clangd/config.yaml ~/.config/clangd/```
+    * copy clang-format file to the project as: ```cp clang-format/clang-format path-to-project/.clang-format```
+    * install [ccache](https://github.com/ccache/ccache): ```cp cmake/ccache ~/.config/ccache.conf```
+      * adjust max_size if needed
+      * set a proper cache_dir with enough size
+      * add a prefix_command if needed
+    * install cmake
+      * add inject cmake file: ```cp cmake/inject.cmake ~/.config/cmake/```
+      * make sure inject file is correctly configured, such as adding an alias: ```alias cmake 'cmake -DCMAKE_PROJECT_INCLUDE=~/.config/cmake/inject.cmake'```
+
+* Diff and merge tool [meld](https://meldmerge.org/)
+    * install via package manager
+    * configure to be used by git:
+      * ```git config --global diff.tool meld```
+      * ```git config --global merge.tool meld```
+      * ```git config --global --add difftool.prompt false```

@@ -15,8 +15,10 @@ set -x GCC_COLORS 'error=01' //check rest
 bind \cp 'vim $(fzf);'
 
 alias grep rg
-alias del "mv -t /tmp"
+alias del 'mv -t /tmp'
 alias v $EDITOR
 alias vi $EDITOR
 alias vim $EDITOR
 alias vimdiff '$EDITOR -d'
+
+alias cmake 'cmake -DCMAKE_PROJECT_INCLUDE=~/.config/cmake/inject.cmake'
