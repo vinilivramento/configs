@@ -36,7 +36,10 @@ require('packer').startup(function(use)
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/vim-vsnip'
-    use 'nvim-treesitter/nvim-treesitter'
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate' 
+    }
 
     -- Setup and config rust_analyzer
     use 'simrat39/rust-tools.nvim'
@@ -108,6 +111,7 @@ require('user.config')
 
 require('user.bufferline')
 require('user.code-style')
+require('user.debugger')
 require('user.lsp')
 require('user.lualine')
 require('user.neotest')
