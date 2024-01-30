@@ -29,7 +29,7 @@
     * open nvim and install all plugins by running ```PackerInstall```
     * Use [Mason](https://github.com//packer.nvim) to install LSP tooling: ```bash-language-server pyright rust-analyzer codelldb```
 
-* Editor [vim]:
+* Editor vim:
   * basic configuration: ```cp vimrc ~/.vimrc```
 
 * Rust Configuration and Tooling
