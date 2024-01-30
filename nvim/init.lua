@@ -83,10 +83,25 @@ require('packer').startup(function(use)
     use {'folke/trouble.nvim', requires = 'nvim-tree/nvim-web-devicons'}
 
     -- test runner
-    use { 'klen/nvim-test',
-          config = function() require('nvim-test').setup() end
+    use { 'nvim-neotest/neotest',
+          requires = {
+            "nvim-lua/plenary.nvim",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "alfaix/neotest-gtest",
+            "nvim-neotest/neotest-python",
+            "rouge8/neotest-rust"
+          }
     }
 
+    -- git integration 
+    use 'tpope/vim-fugitive'
+
+    -- sign column to indicate changes manages by version control system
+    use 'airblade/vim-gitgutter'
+
+    -- debugger adapter 
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 end)
 
 require('user.config')
@@ -95,8 +110,8 @@ require('user.bufferline')
 require('user.code-style')
 require('user.lsp')
 require('user.lualine')
+require('user.neotest')
 require('user.nvim-comment')
-require('user.nvim-test')
 require('user.nvim-tree')
 require('user.telescope')
 require('user.theme')
