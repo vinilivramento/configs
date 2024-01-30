@@ -22,6 +22,7 @@ rt.setup({
       other_hints_prefix = "=> ",
       highlight = "Comment",
     },
+    hover_with_actions = true,
     hover_actions = {
         border = {
             { "╭", "FloatBorder" },
