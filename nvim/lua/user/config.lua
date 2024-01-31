@@ -53,7 +53,6 @@ opt.hid  = true
 opt.signcolumn = "yes"
 opt.splitbelow = true
 opt.splitright = true
-opt.termguicolors = true
 opt.timeoutlen = 400
 
 opt.undofile = true
@@ -74,8 +73,6 @@ opt.termencoding = "utf-8"
 
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
-
-opt.termguicolors = true
 
 --code completion
 vim.opt.completeopt = {'menuone', 'noselect', 'noinsert', 'preview'}

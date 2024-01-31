@@ -1,3 +1,7 @@
+-- disable nerdtree plugin
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- bootstrap lazy nvim plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -12,13 +16,12 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("user.config")
-
 require("lazy").setup({
-    -- Theme
+    -- Themes
     "Mofiqul/dracula.nvim",
     "folke/tokyonight.nvim",
     "https://gitlab.com/__tpb/monokai-pro.nvim",
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
     -- Lsp config
     "williamboman/mason.nvim",
@@ -32,7 +35,6 @@ require("lazy").setup({
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-buffer",
     "hrsh7th/vim-vsnip",
-
     {
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate" 
@@ -108,6 +110,10 @@ require("lazy").setup({
     "simrat39/rust-tools.nvim",
 })
 
+-- define leader mapping and load basic config. It should come before the rest of plugin-specifi configuration
+require("user.config")
+
+-- plugin-specific configuration
 require("user.bufferline")
 require("user.code-style")
 require("user.debugger")
