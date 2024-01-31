@@ -6,8 +6,10 @@
 
 * Command-line shell [fish](https://github.com/fish-shell/fish-shell)
     * install via package manager: ```apt install fish```
-    * install fish plugin manager manager [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish)
-    * install fish theme [bobthefish](https://github.com/oh-my-fish/theme-bobthefish): ```omf install bobthefish```
+    * install fish plugin manager [fisher](https://github.com/jorgebucaran/fisher)
+    * install fish theme [tide](https://github.com/IlanCosman/tide): ```fisher install IlanCosman/tide@v6```
+    * install fish plugin [fzf](https://github.com/PatrickF1/fzf.fish)
+    * install fish plugin [puffer](https://github.com/nickeb96/puffer-fish)
     * configure: ```cp fish/config.fish ~/.config/fish/ ```
 
 * Configure bash
