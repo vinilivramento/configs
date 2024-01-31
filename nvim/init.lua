@@ -1,122 +1,121 @@
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
+-- bootstrap lazy nvim plugin manager
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", 
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
+require("user.config")
 
-require('packer').startup(function(use)
-
-    -- Package manager
-    use 'wbthomason/packer.nvim'
-
-    -- Faster startup
-    use 'lewis6991/impatient.nvim'
-
+require("lazy").setup({
     -- Theme
-    use 'Mofiqul/dracula.nvim'
-    use 'folke/tokyonight.nvim'
-    use 'https://gitlab.com/__tpb/monokai-pro.nvim'
+    "Mofiqul/dracula.nvim",
+    "folke/tokyonight.nvim",
+    "https://gitlab.com/__tpb/monokai-pro.nvim",
 
     -- Lsp config
-    use 'williamboman/mason.nvim'   
-    use 'williamboman/mason-lspconfig.nvim'
-    use 'neovim/nvim-lspconfig'
-    use 'hrsh7th/nvim-cmp' 
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-nvim-lua'
-    use 'hrsh7th/cmp-nvim-lsp-signature-help'
-    use 'hrsh7th/cmp-vsnip'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/vim-vsnip'
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate' 
-    }
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+    "hrsh7th/nvim-cmp" ,
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-nvim-lua",
+    "hrsh7th/cmp-nvim-lsp-signature-help",
+    "hrsh7th/cmp-vsnip",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/vim-vsnip",
 
-    -- Setup and config rust_analyzer
-    use 'simrat39/rust-tools.nvim'
+    {
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate" 
+    },
 
-    -- Telescope 
-    use {
-  	    'nvim-telescope/telescope.nvim', tag = '0.1.2',
-	    requires = { {'nvim-lua/plenary.nvim'} }
-    }
+    -- Fuzzy finder 
+    {
+        "nvim-telescope/telescope.nvim", tag = "0.1.5",
+        dependencies = { "nvim-lua/plenary.nvim" }
+    },
 
     -- File explorer nvim-tree
-    use {
-  	    'nvim-tree/nvim-tree.lua',
-    	requires = {
-        'nvim-tree/nvim-web-devicons', -- optional, for file icons
-    	},
-    }
+    { 
+   	    "nvim-tree/nvim-tree.lua",
+        dependencies = { "nvim-tree/nvim-web-devicons" }
+    },
 
     -- Status bar
-    use {
-        'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-    }
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" }
+    },
 
-     -- Pair brackets
-    use {
-	    'windwp/nvim-autopairs',
-        config = function() require("nvim-autopairs").setup {} end
-    }
+    -- Pair brackets
+    {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        opts = {} -- this is equalent to setup({}) function
+    },
 
     -- Buffer Line
-    use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
+    {
+        "akinsho/bufferline.nvim", 
+        version = "*", 
+        dependencies = "nvim-tree/nvim-web-devicons"
+    },
 
     -- Indent lines
-    use 'lukas-reineke/indent-blankline.nvim'
+    "lukas-reineke/indent-blankline.nvim",
 
     -- Comment block
-    use 'terrortylor/nvim-comment'
+    "terrortylor/nvim-comment",
 
     -- terminal emulator
-    use 'akinsho/toggleterm.nvim'
+    "akinsho/toggleterm.nvim",
 
     -- diagnostics list
-    use {'folke/trouble.nvim', requires = 'nvim-tree/nvim-web-devicons'}
+    "folke/trouble.nvim", 
 
     -- test runner
-    use { 'nvim-neotest/neotest',
-          requires = {
+    { 
+        "nvim-neotest/neotest",
+        dependencies = {
             "nvim-lua/plenary.nvim",
             "antoinemadec/FixCursorHold.nvim",
             "nvim-treesitter/nvim-treesitter",
             "alfaix/neotest-gtest",
             "nvim-neotest/neotest-python",
             "rouge8/neotest-rust"
-          }
-    }
+        }
+     },
 
     -- git integration 
-    use 'tpope/vim-fugitive'
+    "tpope/vim-fugitive",
 
     -- sign column to indicate changes manages by version control system
-    use 'airblade/vim-gitgutter'
+    "airblade/vim-gitgutter",
 
     -- debugger adapter 
-    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-end)
+    { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap"} },
 
-require('user.config')
+    -- Setup and config rust_analyzer
+    "simrat39/rust-tools.nvim",
+})
 
-require('user.bufferline')
-require('user.code-style')
-require('user.debugger')
-require('user.lsp')
-require('user.lualine')
-require('user.neotest')
-require('user.nvim-comment')
-require('user.nvim-tree')
-require('user.telescope')
-require('user.theme')
-require('user.toggleterm')
+require("user.bufferline")
+require("user.code-style")
+require("user.debugger")
+require("user.lsp")
+require("user.lualine")
+require("user.neotest")
+require("user.nvim-comment")
+require("user.nvim-tree")
+require("user.telescope")
+require("user.theme")
+require("user.toggleterm")

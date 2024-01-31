@@ -3,6 +3,7 @@ local g = vim.g
 local map = vim.api.nvim_set_keymap
 
 g.mapleader = ","
+g.maplocalleader = ","
 
 -- This option will restrict usage of some commands in non-default .vimrc files;
 -- commands that write to file or execute shell commands are not allowed and map 
