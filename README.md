@@ -13,6 +13,9 @@
 * Configure bash
   * append folloing content to .bashrc: ```cat bash/bashrc >> ~/.bashrc```
 
+* Cat clone with syntax highlighting called [bat](https://github.com/sharkdp/bat)
+  * install via package manager: ```apt install bat```
+
 * Regex tool [ripgrep](https://github.com/BurntSushi/ripgrep)
     * install via package manager: ```apt install ripgrep```
 

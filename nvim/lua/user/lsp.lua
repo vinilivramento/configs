@@ -1,8 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup()
 
-require'lspconfig'.clangd.setup{}
-
 local lspconfig = require('lspconfig')
 
 local servers = { 'bashls', 'clangd', 'rust_analyzer', 'pyright' }

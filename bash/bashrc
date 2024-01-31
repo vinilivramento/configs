@@ -1,6 +1,8 @@
 alias ls="ls --color=auto"
 
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}*" -g "!{*.o*}" -g "!{*.clangd*}" -g "!{*build*}/*" '
+# fzf preview with dracula theme 
+export FZF_DEFAULT_OPTS="-i --preview='cat {}' --preview-label='[ File Preview ]' --prompt='▶' --pointer='→' --border=rounded --info=inline --header='FZF Search' --header-first --reverse --color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4"
+export FZF_DEFAULT_COMMAND="rg --files --ignore-case --hidden --follow --smart-case -g '!.git' -g '!node_modules/' -g '!*.o' -g '!.clangd/' -g '!build/' -g '!target/' "
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
 export PATH=$PATH:~/Tools/projectdo/

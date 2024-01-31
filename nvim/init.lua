@@ -43,7 +43,7 @@ require("lazy").setup({
     -- Fuzzy finder 
     {
         "nvim-telescope/telescope.nvim", tag = "0.1.5",
-        dependencies = { "nvim-lua/plenary.nvim" }
+        dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-media-files.nvim" }
     },
 
     -- File explorer nvim-tree
@@ -102,6 +102,9 @@ require("lazy").setup({
 
     -- sign column to indicate changes manages by version control system
     "airblade/vim-gitgutter",
+
+    -- diff view
+    "sindrets/diffview.nvim",
 
     -- debugger adapter 
     { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap"} },
