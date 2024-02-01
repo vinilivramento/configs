@@ -23,7 +23,16 @@ require("lazy").setup({
     "https://gitlab.com/__tpb/monokai-pro.nvim",
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
-    -- Lsp config
+    -- Fancier UI 
+    {
+        "stevearc/dressing.nvim",
+        opts = {} -- this is equalent to setup({}) function
+    },
+
+    -- key bindings manager
+    "folke/which-key.nvim",
+
+    -- Lsp configlsp
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
@@ -38,6 +47,13 @@ require("lazy").setup({
     {
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate" 
+    },
+
+
+    -- Lsp additions
+    {
+        "nvimdev/lspsaga.nvim",
+        dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
     },
 
     -- Fuzzy finder 
@@ -97,6 +113,14 @@ require("lazy").setup({
         }
      },
 
+     -- search and replace plugin
+     {
+        "VonHeikemen/searchbox.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim"
+        }
+    },
+
     -- git integration 
     "tpope/vim-fugitive",
 
@@ -110,11 +134,27 @@ require("lazy").setup({
     { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap"} },
 
     -- Setup and config rust_analyzer
-    "simrat39/rust-tools.nvim",
+    {
+      "mrcjkb/rustaceanvim",
+      version = '^4', -- Recommended
+      ft = { 'rust' },
+      dependencies = {
+          "lvimuser/lsp-inlayhints.nvim",
+          opts = {}
+      }
+    },
+
+    -- clangd extensions (such as inlay hints)
+    {
+        "p00f/clangd_extensions.nvim",
+        dependencies = "neovim/nvim-lspconfig",
+    },
 })
 
 -- define leader mapping and load basic config. It should come before the rest of plugin-specifi configuration
 require("user.config")
+
+require("user.keybindings")
 
 -- plugin-specific configuration
 require("user.bufferline")

@@ -69,7 +69,6 @@ opt.backspace = "eol,start,indent"
 
 opt.enc = "utf-8"
 opt.fenc = "utf-8"
-opt.termencoding = "utf-8"
 
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
@@ -78,28 +77,5 @@ g.loaded_netrwPlugin = 1
 vim.opt.completeopt = {'menuone', 'noselect', 'noinsert', 'preview'}
 -- shortmess is used to avoid excessive messages
 vim.opt.shortmess = vim.opt.shortmess + { c = true}
-
------------------------  Key Mappings -----------------------
-vim.keymap.set("n", "<Tab>", ":bn<CR>", { silent = true })
-vim.keymap.set("n", "<S-Tab>", ":bp<CR>", { silent = true })
-vim.keymap.set("n", "<leader>q", ":bd<CR>", { silent = true })
-
--- Faster moving 
-vim.keymap.set("n", "<C-j>", "jjjj", { silent = true })
-vim.keymap.set("n", "<C-k>", "kkkk", { silent = true })
-vim.keymap.set("n", "<C-h>", "hhhh", { silent = true })
-vim.keymap.set("n", "<C-l>", "llll", { silent = true })
-
--- Hard mapping of upper case letters in normal mode
-vim.keymap.set("n", "H", "h", { silent = true })
-vim.keymap.set("n", "J", "j", { silent = true })
-vim.keymap.set("n", "K", "k", { silent = true })
-vim.keymap.set("n", "L", "l", { silent = true })
-
--- yank from cursor to the end of the line
-vim.keymap.set("n", "Y", "y$", { silent = true })
-
--- yank always yanks the whole word
-vim.keymap.set("n", "yw", "yiw", { silent = true })
 
 -------------------------------------------------------------
