@@ -6,13 +6,15 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window up:3:hidden:wrap --
 export FZF_DEFAULT_COMMAND="rg --files --ignore-case --hidden --follow --smart-case -g '!.git' -g '!node_modules/' -g '!*.o' -g '!.clangd/' -g '!build/' -g '!target/' "
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
-export PATH=$PATH:~/Tools/projectdo
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export PATH=$PATH:~/bin
 
 bind -x '"\C-p": vim $(fzf);'
 
-# rustup
-. "$HOME/.cargo/env"
+# when fzf is installed, this line should be automatically appended to bashrc
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-exec fish
+# enable in case rustup is installed 
+#. "$HOME/.cargo/env"
+
+# enable in case fish shell should be run
+#exec fish

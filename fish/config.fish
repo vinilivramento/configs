@@ -1,8 +1,4 @@
-if status is-interactive
-    # Commands to run in interactive sessions can go here
-end
-
-fish_add_path ~/Tools/projectdo
+fish_add_path ~/bin
 
 set -g theme_color_scheme zenburn
 

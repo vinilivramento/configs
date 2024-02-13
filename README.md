@@ -28,10 +28,13 @@
 * Single-letter project commands [projectdo](https://github.com/paldepind/projectdo)
     * download [script](https://raw.githubusercontent.com/paldepind/projectdo/master/projectdo) and put in path 
 
+* Install node.js (and npm)
+    * Download [package] (https://nodejs.org/dist/v20.11.0/node-v20.11.0-linux-x64.tar.xz)
+    * Unpack and create symbolic links to node and npm in ~/bin
+
 * Editor [neovim](https://github.com/neovim/neovim) 
     * install most recent released [binary](https://github.com/neovim/neovim/releases/) and put in path
     * configure: ```cp -r nvim ~/.config```
-    * open nvim and install all plugins by running ```PackerInstall```
     * open nvim and install all plugins by running ```PackerInstall```
     * Use [Mason](https://github.com//packer.nvim) to install LSP tooling: ```bash-language-server pyright rust-analyzer codelldb```
 
@@ -61,3 +64,10 @@
       * ```git config --global diff.tool meld```
       * ```git config --global merge.tool meld```
       * ```git config --global --add difftool.prompt false```
+
+* Docker:
+    * install via package manager
+    * configure [permissions](https://docs.docker.com/engine/install/linux-postinstall/): ```sudo groupadd docker && sudo usermod -aG docker $USER```
+
+* [Lazydocker](https://github.com/jesseduffield/lazydocker) tool 
+    * install: ```curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash```
