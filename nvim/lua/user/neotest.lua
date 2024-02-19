@@ -1,8 +1,6 @@
 require("neotest").setup({
   adapters = {
-    require("neotest-rust") {
-        args = { "--no-capture" },
-    },
+    require("rustaceanvim.neotest"),
     require("neotest-python") {
     },
     require("neotest-gtest").setup({}) 

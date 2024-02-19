@@ -109,7 +109,7 @@ require("lazy").setup({
             "nvim-treesitter/nvim-treesitter",
             "alfaix/neotest-gtest",
             "nvim-neotest/neotest-python",
-            "rouge8/neotest-rust"
+            --neotest-rust is replaced by rustaceanvim.neotest
         }
      },
 
