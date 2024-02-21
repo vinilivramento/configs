@@ -8,6 +8,11 @@
 * Install fonts
     * fonts-powerline
     * [nerd-fonts](https://github.com/ryanoasis/nerd-fonts)
+        * For example, install [source-code-pro](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/SourceCodePro.zip) downloading the archived fonts
+            * Create a font directory: ```mkdir ~/.local/share/fonts```
+            * Copy the archived content (.ttf files) to the created directory
+            * Update fonts cache: ```fc-cache -fv ~/.local/share/fonts```
+            * Check if fonts have been installed correctly: ```fc-list``` 
 
 * Command-line shell [fish](https://github.com/fish-shell/fish-shell)
     * install via package manager: ```apt install fish```
