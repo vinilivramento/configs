@@ -45,7 +45,7 @@
 * Editor [neovim](https://github.com/neovim/neovim) 
     * install most recent released [binary](https://github.com/neovim/neovim/releases/) and put in path
     * configure: ```cp -r nvim ~/.config```
-    * open nvim and install all plugins by running ```PackerInstall```
+    * open nvim and all plugins will be installed by lazy package manager 
     * Use [Mason](https://github.com//packer.nvim) to install LSP tooling: ```bash-language-server pyright rust-analyzer codelldb```
 
 * Editor vim:
