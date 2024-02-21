@@ -3,6 +3,7 @@
 * Terminal emulator [kitty](https://sw.kovidgoyal.net/kitty)
   * install [kitty](https://sw.kovidgoyal.net/kitty/binary)
   * configure: ```cp -r kitty  ~/.config/kitty/kitty.conf```
+  * configure: ```cp -r current-theme.conf ~/.config/kitty/current-theme.conf```
 
 * Command-line shell [fish](https://github.com/fish-shell/fish-shell)
     * install via package manager: ```apt install fish```
