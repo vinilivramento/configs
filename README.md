@@ -5,6 +5,8 @@
   * configure: ```cp -r kitty  ~/.config/kitty/kitty.conf```
   * configure: ```cp -r current-theme.conf ~/.config/kitty/current-theme.conf```
 
+* Install fonts-powerline 
+
 * Command-line shell [fish](https://github.com/fish-shell/fish-shell)
     * install via package manager: ```apt install fish```
     * install fish plugin manager [fisher](https://github.com/jorgebucaran/fisher)
