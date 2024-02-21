@@ -5,7 +5,9 @@
   * configure: ```cp -r kitty  ~/.config/kitty/kitty.conf```
   * configure: ```cp -r current-theme.conf ~/.config/kitty/current-theme.conf```
 
-* Install fonts-powerline 
+* Install fonts
+    * fonts-powerline
+    * [nerd-fonts](https://github.com/ryanoasis/nerd-fonts)
 
 * Command-line shell [fish](https://github.com/fish-shell/fish-shell)
     * install via package manager: ```apt install fish```
