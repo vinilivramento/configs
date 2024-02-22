@@ -23,7 +23,7 @@ require("lazy").setup({
     -- Themes
     "Mofiqul/dracula.nvim",
     "folke/tokyonight.nvim",
-    "https://gitlab.com/__tpb/monokai-pro.nvim",
+    "loctvl842/monokai-pro.nvim",
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
     -- Fancier UI 
