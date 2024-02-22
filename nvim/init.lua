@@ -2,6 +2,9 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- define leader mapping and load basic config. It should come before the rest of plugin-specific configuration
+require("user.config")
+
 -- bootstrap lazy nvim plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -150,9 +153,6 @@ require("lazy").setup({
         dependencies = "neovim/nvim-lspconfig",
     },
 })
-
--- define leader mapping and load basic config. It should come before the rest of plugin-specifi configuration
-require("user.config")
 
 require("user.keybindings")
 
