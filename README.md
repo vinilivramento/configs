@@ -67,6 +67,9 @@
     * install cmake
       * add inject cmake file: ```cp cmake/inject.cmake ~/.config/cmake/```
       * make sure inject file is correctly configured, such as adding an alias: ```alias cmake 'cmake -DCMAKE_PROJECT_INCLUDE=~/.config/cmake/inject.cmake'```
+    * install [gdb dashboard](https://github.com/cyrus-and/gdb-dashboard)
+        * download .gdbinit in home directory
+        * create directory ~/.gdbinit.d and copy gdb/config file in there
 
 * Diff and merge tool [meld](https://meldmerge.org/)
     * install via package manager

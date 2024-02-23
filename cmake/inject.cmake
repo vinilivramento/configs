@@ -7,9 +7,7 @@ if (NOT CUSTOMIZATION_INJECTED)
   set(CMAKE_CXX_COMPILER_LAUNCHER "/usr/bin/ccache")
   set(CMAKE_CXX_LINKER_LAUNCHER "/usr/bin/ccache")
 
-  set(COMMON_CXX_FLAGS "-fdiagnostics-color=always") 
-
-  set(CMAKE_CXX_FLAGS "$(COMMON_CXX_FLAGS)")
+  set(CMAKE_CXX_FLAGS "-fdiagnostics-color=always")
 
   set(CUSTOMIZATION_INJECTED TRUE)
 endif()

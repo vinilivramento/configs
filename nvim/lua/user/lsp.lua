@@ -55,7 +55,7 @@ lspconfig.clangd.setup({
 })
 
 --- Rust
-
+--
 vim.g.rustaceanvim = function()
     local mason_registry = require("mason-registry")
 

@@ -26,6 +26,10 @@ wk.register({
   ["Y"]     = { "y$",     "Copy From Cursor to the End Of Line"},
   ["yw"]    = { "yiw",    "Copy Always the Whole Word"},
 
+  -- Managing sessions 
+  ["<leader>cs"] = { ":mksession! .session.vim <cr>",        "Save session" },
+  ["<leader>ls"] = { ":source .session.vim <cr>",            "Load session" },
+
   --Telescope 
   ["<leader>f"]  = { name = "fuzzy finder" },
   ["<leader>ff"] = { "<cmd> lua require('telescope.builtin').find_files({no_ignore=true, hidden=true}) <cr>",        "Find File" },
