@@ -1,0 +1,4 @@
+dashboard -enabled on
+
+dashboard -layout source variables 
+dashboard -style prompt 'gdb>'
