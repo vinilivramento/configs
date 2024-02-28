@@ -60,7 +60,7 @@
     * install clang, clangd and clang-format via package manager
     * setup generic clangd config: ```cp clangd/config.yaml ~/.config/clangd/```
     * copy clang-format file to the project as: ```cp clang-format/clang-format path-to-project/.clang-format```
-    * install [ccache](https://github.com/ccache/ccache): ```cp cmake/ccache ~/.config/ccache.conf```
+    * install [ccache](https://github.com/ccache/ccache): ```cp cmake/ccache ~/.config/ccache/ccache.conf```
       * adjust max_size if needed
       * set a proper cache_dir with enough size
       * add a prefix_command if needed
