@@ -20,7 +20,7 @@
     * install fish theme [tide](https://github.com/IlanCosman/tide): ```fisher install IlanCosman/tide@v6```
     * install fish plugin [fzf](https://github.com/PatrickF1/fzf.fish)
     * install fish plugin [puffer](https://github.com/nickeb96/puffer-fish)
-    * install fish plugin [fish-docker](https://github.com/halostatue/fish-docker) ```fisher install halostatue/fish-docker@v1.x```````
+    * install fish plugin [fish-docker](https://github.com/halostatue/fish-docker) ```fisher install halostatue/fish-docker@v1.x```
     * configure: ```cp fish/config.fish ~/.config/fish/ ```
 
 * Configure bash
