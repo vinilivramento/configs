@@ -134,7 +134,7 @@ require("lazy").setup({
     "sindrets/diffview.nvim",
 
     -- debugger adapter 
-    { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap"} },
+    { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} },
 
     -- Setup and config rust_analyzer
     {
