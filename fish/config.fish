@@ -1,4 +1,8 @@
 fish_add_path ~/bin
+fish_add_path /opt/tools/cargo/bin 
+
+set -gx RUSTUP_HOME /opt/tools/rustup
+set -gx CARGO_HOME /opt/tools/cargo
 
 set -g theme_color_scheme zenburn
 
