@@ -3,6 +3,16 @@
 * Terminal emulator [kitty](https://sw.kovidgoyal.net/kitty)
   * install [kitty](https://sw.kovidgoyal.net/kitty/binary)
   * configure: ```cp -r kitty  ~/.config/kitty/kitty.conf```
+  * configure: ```cp -r current-theme.conf ~/.config/kitty/current-theme.conf```
+
+* Install fonts
+    * fonts-powerline
+    * [nerd-fonts](https://github.com/ryanoasis/nerd-fonts)
+        * For example, install [source-code-pro](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/SourceCodePro.zip) downloading the archived fonts
+            * Create a font directory: ```mkdir ~/.local/share/fonts```
+            * Copy the archived content (.ttf files) to the created directory
+            * Update fonts cache: ```fc-cache -fv ~/.local/share/fonts```
+            * Check if fonts have been installed correctly: ```fc-list``` 
 
 * Command-line shell [fish](https://github.com/fish-shell/fish-shell)
     * install via package manager: ```apt install fish```
@@ -10,7 +20,7 @@
     * install fish theme [tide](https://github.com/IlanCosman/tide): ```fisher install IlanCosman/tide@v6```
     * install fish plugin [fzf](https://github.com/PatrickF1/fzf.fish)
     * install fish plugin [puffer](https://github.com/nickeb96/puffer-fish)
-    * install fish plugin [fish-docker](https://github.com/halostatue/fish-docker) ```fisher install halostatue/fish-docker@v1.x```````
+    * install fish plugin [fish-docker](https://github.com/halostatue/fish-docker) ```fisher install halostatue/fish-docker@v1.x```
     * configure: ```cp fish/config.fish ~/.config/fish/ ```
 
 * Configure bash
@@ -35,7 +45,7 @@
 * Editor [neovim](https://github.com/neovim/neovim) 
     * install most recent released [binary](https://github.com/neovim/neovim/releases/) and put in path
     * configure: ```cp -r nvim ~/.config```
-    * open nvim and install all plugins by running ```PackerInstall```
+    * open nvim and all plugins will be installed by lazy package manager 
     * Use [Mason](https://github.com//packer.nvim) to install LSP tooling: ```bash-language-server pyright rust-analyzer codelldb```
 
 * Editor vim:
@@ -50,13 +60,16 @@
     * install clang, clangd and clang-format via package manager
     * setup generic clangd config: ```cp clangd/config.yaml ~/.config/clangd/```
     * copy clang-format file to the project as: ```cp clang-format/clang-format path-to-project/.clang-format```
-    * install [ccache](https://github.com/ccache/ccache): ```cp cmake/ccache ~/.config/ccache.conf```
+    * install [ccache](https://github.com/ccache/ccache): ```cp cmake/ccache ~/.config/ccache/ccache.conf```
       * adjust max_size if needed
       * set a proper cache_dir with enough size
       * add a prefix_command if needed
     * install cmake
       * add inject cmake file: ```cp cmake/inject.cmake ~/.config/cmake/```
       * make sure inject file is correctly configured, such as adding an alias: ```alias cmake 'cmake -DCMAKE_PROJECT_INCLUDE=~/.config/cmake/inject.cmake'```
+    * install [gdb dashboard](https://github.com/cyrus-and/gdb-dashboard)
+        * download .gdbinit in home directory
+        * create directory ~/.gdbinit.d and copy gdb/config file in there
 
 * Diff and merge tool [meld](https://meldmerge.org/)
     * install via package manager

@@ -20,6 +20,22 @@ require("lspsaga").setup({
 
 local lspconfig = require('lspconfig')
 
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    -- Enable completion triggered by <c-x><c-o>
+    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+    -- Buffer local mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    local opts = { buffer = ev.buf }
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', '<leader>f', function()
+      vim.lsp.buf.format { async = true }
+    end, opts)
+  end,
+})
+
 --- Bash
 
 lspconfig.bashls.setup({})
@@ -39,9 +55,7 @@ lspconfig.clangd.setup({
 })
 
 --- Rust
-
-lspconfig.rust_analyzer.setup({})
-
+--
 vim.g.rustaceanvim = function()
     local mason_registry = require("mason-registry")
 
@@ -74,24 +88,6 @@ end
 --- Python
 
 lspconfig.pyright.setup({})
-
-
-
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-  callback = function(ev)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-
-    -- Buffer local mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local opts = { buffer = ev.buf }
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', '<leader>f', function()
-      vim.lsp.buf.format { async = true }
-    end, opts)
-  end,
-})
 
 --- 
 
@@ -153,6 +149,19 @@ cmp.setup({
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
     },
+    formatting = {
+        fields = {'menu', 'abbr', 'kind'},
+        format = function(entry, item)
+            local menu_icon ={
+                nvim_lsp = 'λ',
+                vsnip = '⋗',
+                buffer = 'Ω',
+                path = '🖫',
+            }
+            item.menu = menu_icon[entry.source.name]
+            return item
+        end,
+  },
 })
 
 ---
@@ -165,12 +174,3 @@ vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticS
 vim.fn.sign_define("DiagnosticSignWarn",  { text = " ", texthl = "DiagnosticSignWarn" })
 vim.fn.sign_define("DiagnosticSignInfo",  { text = " ", texthl = "DiagnosticSignInfo" })
 vim.fn.sign_define("DiagnosticSignHint",  { text = "", texthl = "DiagnosticSignHint" })
-
--- Mappings for diagnostics
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
-
--- Show trouble toggle diagnostics list
-vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>TroubleToggle<CR>', { noremap = true, silent = true })

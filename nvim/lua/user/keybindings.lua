@@ -26,6 +26,10 @@ wk.register({
   ["Y"]     = { "y$",     "Copy From Cursor to the End Of Line"},
   ["yw"]    = { "yiw",    "Copy Always the Whole Word"},
 
+  -- Managing sessions 
+  ["<leader>cs"] = { ":mksession! .session.vim <cr>",        "Save session" },
+  ["<leader>ls"] = { ":source .session.vim <cr>",            "Load session" },
+
   --Telescope 
   ["<leader>f"]  = { name = "fuzzy finder" },
   ["<leader>ff"] = { "<cmd> lua require('telescope.builtin').find_files({no_ignore=true, hidden=true}) <cr>",        "Find File" },
@@ -51,8 +55,17 @@ wk.register({
   ["gt"]   = { "<cmd> Lspsaga goto_type_definition <cr>", "Go to Type Definition" },
   ["<leader>rn"]   = { "<cmd> Lspsaga rename <cr>", "Rename Word Under Cursor" },
   ["<leader>qq"]   = { "<cmd> Lspsaga code_action <cr>", "Code action" },
-
   ["<leader>s"]   = { "<cmd> ClangdSwitchSourceHeader <cr>", "Toggle Header/Source" },
+  ["<leader>d"]   = { "<cmd> Lspsaga show_cursor_diagnostics <cr>", "Show cursor diagnostic" },
+  ["[d"]   = { "<cmd> Lspsaga diagnostic_jump_prev <cr>", "Show prev diagnostic" },
+  ["]d"]   = { "<cmd> Lspsaga diagnostic_jump_next <cr>", "Show next diagnostic" },
+  ["<leader>o"]   = { "<cmd> Lspsaga outline <cr>", "Show tab with functions outline" },
+
+  --TroubleToggle
+  ["<leader>dd"]   = { "<cmd> TroubleToggle <cr>", "Show diagnostic list" },
+
+  -- Code Folding
+  ["F"]   = { "<cmd> lua toggle_fold() <cr>", "Toggle code folding" },
   
   --Debugger
   -- TODO

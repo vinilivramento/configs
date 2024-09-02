@@ -2,6 +2,9 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- define leader mapping and load basic config. It should come before the rest of plugin-specific configuration
+require("user.config")
+
 -- bootstrap lazy nvim plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -20,7 +23,7 @@ require("lazy").setup({
     -- Themes
     "Mofiqul/dracula.nvim",
     "folke/tokyonight.nvim",
-    "https://gitlab.com/__tpb/monokai-pro.nvim",
+    "loctvl842/monokai-pro.nvim",
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
     -- Fancier UI 
@@ -131,7 +134,7 @@ require("lazy").setup({
     "sindrets/diffview.nvim",
 
     -- debugger adapter 
-    { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap"} },
+    { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} },
 
     -- Setup and config rust_analyzer
     {
@@ -150,9 +153,6 @@ require("lazy").setup({
         dependencies = "neovim/nvim-lspconfig",
     },
 })
-
--- define leader mapping and load basic config. It should come before the rest of plugin-specifi configuration
-require("user.config")
 
 require("user.keybindings")
 

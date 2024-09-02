@@ -15,3 +15,16 @@ require'nvim-treesitter.configs'.setup {
 
   },
 }
+
+-- Treesitter folding 
+vim.wo.foldexpr = ''
+
+-- Define a global function to toggle fold expression
+_G.toggle_fold = function()
+  if vim.wo.foldexpr == '' then
+    vim.wo.foldmethod = 'expr'
+    vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+  else
+    vim.wo.foldexpr = ''
+  end
+end
