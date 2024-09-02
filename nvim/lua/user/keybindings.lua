@@ -1,71 +1,67 @@
 local wk = require("which-key")
 
-wk.setup({
-    operators = { gc = "Comments" },
-})
+-- wk.setup({
+--     operators = { gc = "Comments" },
+-- })
 
-wk.register({
+wk.add({
   --Buffer
-  ["<Tab>"]     = { "<cmd> bnext <cr>",     "Next Buffer"},
-  ["<S-Tab>"]   = { "<cmd> bprevious <cr>", "Previoud Buffer"},
-  ["<leader>q"] = { "<cmd> bdelete <cr>",   "Destroy Buffer"},
+  { "<S-Tab>", "<cmd> bprevious <cr>", desc = "Previoud Buffer" },
+  { "<Tab>", "<cmd> bnext <cr>", desc = "Next Buffer" },
+  { "<leader>q", "<cmd> bdelete <cr>", desc = "Destroy Buffer" },
 
   --Moving
-  ["<C-h>"]     = { "hhhh",     "Fast Move Left"},
-  ["<C-j>"]     = { "jjjj",     "Fast Move Down"},
-  ["<C-k>"]     = { "kkkk",     "Fast Move Up "},
-  ["<C-l>"]     = { "llll",     "Fast Move Right "},
+  { "<C-h>", "hhhh", desc = "Fast Move Left" },
+  { "<C-j>", "jjjj", desc = "Fast Move Down" },
+  { "<C-k>", "kkkk", desc = "Fast Move Up " },
+  { "<C-l>", "llll", desc = "Fast Move Right " },
 
   --Fallback upper case HJKL to lower case hjkl
-  ["H"]     = { "h",     "Move Left"},
-  ["J"]     = { "j",     "Move Down"},
-  ["K"]     = { "k",     "Move Up "},
-  ["L"]     = { "l",     "Move Right "},
+  { "H", "h", desc = "Move Left" },
+  { "J", "j", desc = "Move Down" },
+  { "K", "k", desc = "Move Up " },
+  { "L", "l", desc = "Move Right " },
 
   --Copy
-  ["Y"]     = { "y$",     "Copy From Cursor to the End Of Line"},
-  ["yw"]    = { "yiw",    "Copy Always the Whole Word"},
+  { "Y", "y$", desc = "Copy From Cursor to the End Of Line" },
+  { "yw", "yiw", desc = "Copy Always the Whole Word" },
 
   -- Managing sessions 
-  ["<leader>cs"] = { ":mksession! .session.vim <cr>",        "Save session" },
-  ["<leader>ls"] = { ":source .session.vim <cr>",            "Load session" },
+  { "<leader>cs", ":mksession! .session.vim <cr>", desc = "Save session" },
+  { "<leader>ls", ":source .session.vim <cr>", desc = "Load session" },
 
   --Telescope 
-  ["<leader>f"]  = { name = "fuzzy finder" },
-  ["<leader>ff"] = { "<cmd> lua require('telescope.builtin').find_files({no_ignore=true, hidden=true}) <cr>",        "Find File" },
-  ["<leader>fg"] = { "<cmd> lua require('telescope.builtin').live_grep() <cr>",                                      "Live Search" },
-  ["<leader>gg"] = { "<cmd> lua require('telescope.builtin').grep_string({search = vim.fn.expand('<cword>')}) <cr>", "Live Search Word Under Cursor" },
-  ["<C-p>"]      = { "<cmd> lua require('telescope.builtin').find_files({no_ignore=true, hidden=true}) <cr>",        "Find File" },
+  { "<leader>f", group = "fuzzy finder" },
+  { "<leader>ff", "<cmd> lua require('telescope.builtin').find_files({no_ignore=true, hidden=true}) <cr>", desc = "Find File" },
+  { "<leader>fg", "<cmd> lua require('telescope.builtin').live_grep() <cr>", desc = "Live Search" },
+  { "<leader>gg", "<cmd> lua require('telescope.builtin').grep_string({search = vim.fn.expand('<cword>')}) <cr>", desc = "Live Search Word Under Cursor" },
+  { "<leader>fd", "<cmd> lua require('telescope.builtin').diagnostics() <cr>", desc = "Show diagnostics" },
+  { "<C-p>", "<cmd> lua require('telescope.builtin').find_files({no_ignore=true, hidden=true}) <cr>", desc = "Find File" },
 
   --Nvim Tree
-  ["<leader>e"] = { "<cmd> NvimTreeToggle <cr>",    "File Tree Explorer" },
+  { "<leader>e", "<cmd> NvimTreeToggle <cr>", desc = "File Tree Explorer" },
 
   --Floating Terminal
-  ["<leader>t"] = { "<cmd> ToggleTerm <cr>", {noremap = true, silent = true}, "Toggle Terminal" },
+  {"<leader>t", "<cmd> ToggleTerm <cr>", desc = "Toggle Terminal" },
 
   --Neo Test
-  ["<leader>r"]   = { "<cmd> lua require('neotest').run.run() <cr>",                   "Run Current Test" },
-  ["<leader>rr"]  = { "<cmd> lua require('neotest').run.run(vim.fn.expand('%')) <cr>", "Run All Tests in File" },
-  ["<leader>s"]   = { "<cmd> lua require('neotest').run.stop() <cr>",                  "Stop Current Test" },
-  ["<leader>ss"]  = { "<cmd> lua require('neotest').summary.toggle() <cr>",            "Show Test Summary" },
-  ["<leader>o"]   = { "<cmd> lua require('neotest').output.open({enter = true}) <cr>", "Show Test Output" },
+  { "<leader>r", "<cmd> lua require('neotest').run.run() <cr>", desc = "Run Current Test" },
+  { "<leader>rr", "<cmd> lua require('neotest').run.run(vim.fn.expand('%')) <cr>", desc = "Run All Tests in File" },
+  { "<leader>ss", "<cmd> lua require('neotest').summary.toggle() <cr>", desc = "Show Test Summary" },
 
   --LspSaga
-  ["gd"]   = { "<cmd> Lspsaga goto_definition <cr>", "Go to Definition" },
-  ["gt"]   = { "<cmd> Lspsaga goto_type_definition <cr>", "Go to Type Definition" },
-  ["<leader>rn"]   = { "<cmd> Lspsaga rename <cr>", "Rename Word Under Cursor" },
-  ["<leader>qq"]   = { "<cmd> Lspsaga code_action <cr>", "Code action" },
-  ["<leader>s"]   = { "<cmd> ClangdSwitchSourceHeader <cr>", "Toggle Header/Source" },
-  ["<leader>d"]   = { "<cmd> Lspsaga show_cursor_diagnostics <cr>", "Show cursor diagnostic" },
-  ["[d"]   = { "<cmd> Lspsaga diagnostic_jump_prev <cr>", "Show prev diagnostic" },
-  ["]d"]   = { "<cmd> Lspsaga diagnostic_jump_next <cr>", "Show next diagnostic" },
-  ["<leader>o"]   = { "<cmd> Lspsaga outline <cr>", "Show tab with functions outline" },
-
-  --TroubleToggle
-  ["<leader>dd"]   = { "<cmd> TroubleToggle <cr>", "Show diagnostic list" },
+  { "gd", "<cmd> Lspsaga goto_definition <cr>", desc = "Go to Definition" },
+  { "gt", "<cmd> Lspsaga goto_type_definition <cr>", desc = "Go to Type Definition" },
+  { "<leader>rn", "<cmd> Lspsaga rename <cr>", desc = "Rename Word Under Cursor" },
+  { "<leader>qq", "<cmd> Lspsaga code_action <cr>", desc = "Code action" },
+  { "<leader>s", "<cmd> ClangdSwitchSourceHeader <cr>", desc = "Toggle Header/Source" },
+  { "<leader>d", "<cmd> Lspsaga show_cursor_diagnostics <cr>", desc = "Show cursor diagnostic" },
+  { "[d", "<cmd> Lspsaga diagnostic_jump_prev <cr>", desc = "Show prev diagnostic" },
+  { "]d", "<cmd> Lspsaga diagnostic_jump_next <cr>", desc = "Show next diagnostic" },
+  { "<leader>o", "<cmd> Lspsaga outline <cr>", desc = "Show functions outline" },
 
   -- Code Folding
-  ["F"]   = { "<cmd> lua toggle_fold() <cr>", "Toggle code folding" },
+  { "F", "<cmd> lua toggle_fold() <cr>", desc = "Toggle code folding" },
   
   --Debugger
   -- TODO

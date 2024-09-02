@@ -36,6 +36,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+--- Ansible 
+
+lspconfig.ansiblels.setup({})
+
 --- Bash
 
 lspconfig.bashls.setup({})
@@ -54,36 +58,63 @@ lspconfig.clangd.setup({
     end,
 })
 
---- Rust
+--- Cmake
 --
-vim.g.rustaceanvim = function()
-    local mason_registry = require("mason-registry")
+lspconfig.cmake.setup({
+    cmd = { 'cmake-language-server' },
+    buildDirectory = { 'build' },
+    filetypes = { 'cmake' },
+})
 
-    local codelldb_root = mason_registry.get_package("codelldb"):get_install_path() .. "/extension/"
-    local codelldb_path = codelldb_root .. "adapter/codelldb"
-    local liblldb_path = codelldb_root .. "lldb/lib/liblldb.so"
+--- Rust
 
-    local cfg = require("rustaceanvim.config")
+require("rust-tools").setup({
+  server = {
+    on_attach = function(_, bufnr)
+      -- Hover actions
+      -- vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      -- vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+    end,
+  },
+})
 
-    return {
-          dap = {
-            adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
-          },
-          inlay_hints = {
-            highlight = "NonText",
-          },
-          tools = {
-            hover_actions = {
-              auto_focus = true,
-            },
-          },
-          server = {
-            on_attach = function(client, bufnr)
-              require("lsp-inlayhints").on_attach(client, bufnr)
-            end,
-          },
-    }
-end
+--
+-- vim.g.rustaceanvim = function()
+--     local mason_registry = require("mason-registry")
+
+--     local codelldb_root = mason_registry.get_package("codelldb"):get_install_path() .. "/extension/"
+--     local codelldb_path = codelldb_root .. "adapter/codelldb"
+--     local liblldb_path = codelldb_root .. "lldb/lib/liblldb.so"
+
+--     local cfg = require("rustaceanvim.config")
+
+--     return {
+--           dap = {
+--             adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
+--           },
+--           inlay_hints = {
+--             highlight = "NonText",
+--           },
+--           tools = {
+--             hover_actions = {
+--               auto_focus = true,
+--             },
+--           },
+--           server = {
+--             on_attach = function(client, bufnr)
+--               require("lsp-inlayhints").on_attach(client, bufnr)
+--             end,
+--           },
+--           default_settings = {
+--             ['rust-analyzer'] = {
+--                 ['check'] = {
+--                     ['command'] = 'clippy'
+--                 }
+--             }
+--           }
+--     }
+-- end
 
 --- Python
 

@@ -33,7 +33,10 @@ require("lazy").setup({
     },
 
     -- key bindings manager
-    "folke/which-key.nvim",
+    {
+        "folke/which-key.nvim",
+        dependencies = { "echasnovski/mini.icons" }
+    },
 
     -- Lsp configlsp
     "williamboman/mason.nvim",
@@ -128,7 +131,7 @@ require("lazy").setup({
     "tpope/vim-fugitive",
 
     -- sign column to indicate changes manages by version control system
-    "airblade/vim-gitgutter",
+    -- "airblade/vim-gitgutter",
 
     -- diff view
     "sindrets/diffview.nvim",
@@ -136,16 +139,25 @@ require("lazy").setup({
     -- debugger adapter 
     { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} },
 
-    -- Setup and config rust_analyzer
     {
-      "mrcjkb/rustaceanvim",
-      version = '^4', -- Recommended
-      ft = { 'rust' },
-      dependencies = {
-          "lvimuser/lsp-inlayhints.nvim",
-          opts = {}
-      }
+        "simrat39/rust-tools.nvim",
+        dependencies = {
+            "neovim/nvim-lspconfig",
+            "nvim-lua/plenary.nvim", 
+            "mfussenegger/nvim-dap",
+        }
     },
+    -- Setup and config rust_analyzer
+    -- {
+    --   "mrcjkb/rustaceanvim",
+    --   version = '^4', -- Recommended
+    --   ft = { 'rust' },
+    --   lazy = false,
+    --   dependencies = {
+    --       "lvimuser/lsp-inlayhints.nvim",
+    --       opts = {}
+    --   }
+    -- },
 
     -- clangd extensions (such as inlay hints)
     {
@@ -160,7 +172,7 @@ require("user.keybindings")
 require("user.bufferline")
 require("user.code-style")
 require("user.debugger")
-require("user.gitgutter")
+-- require("user.gitgutter")
 require("user.lsp")
 require("user.lualine")
 require("user.neotest")
