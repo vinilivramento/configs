@@ -136,34 +136,32 @@ require("lazy").setup({
     -- diff view
     "sindrets/diffview.nvim",
 
-    -- debugger adapter 
-    { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} },
+    -- async IO lib 
+    "nvim-neotest/nvim-nio",
 
+    -- debugger adapter
+    "mfussenegger/nvim-dap",
+
+    -- rustacean vim 
     {
-        "simrat39/rust-tools.nvim",
-        dependencies = {
-            "neovim/nvim-lspconfig",
-            "nvim-lua/plenary.nvim", 
-            "mfussenegger/nvim-dap",
-        }
+      "mrcjkb/rustaceanvim",
+      version = '^5', -- Recommended
+      ft = { 'rust' },
+      lazy = false,
     },
-    -- Setup and config rust_analyzer
-    -- {
-    --   "mrcjkb/rustaceanvim",
-    --   version = '^4', -- Recommended
-    --   ft = { 'rust' },
-    --   lazy = false,
-    --   dependencies = {
-    --       "lvimuser/lsp-inlayhints.nvim",
-    --       opts = {}
-    --   }
-    -- },
 
     -- clangd extensions (such as inlay hints)
     {
         "p00f/clangd_extensions.nvim",
         dependencies = "neovim/nvim-lspconfig",
     },
+
+    -- Searchbox 
+    {
+        "VonHeikemen/searchbox.nvim",
+        dependencies = "MunifTanjim/nui.nvim",
+    },
+
 })
 
 require("user.keybindings")

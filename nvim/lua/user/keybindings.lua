@@ -1,10 +1,9 @@
 local wk = require("which-key")
 
--- wk.setup({
---     operators = { gc = "Comments" },
--- })
-
 wk.add({
+  --Save
+  { "<leader>z", "<Esc><cmd>w<CR>", desc = "Save file", mode = {"i", "n"}},
+
   --Buffer
   { "<S-Tab>", "<cmd> bprevious <cr>", desc = "Previoud Buffer" },
   { "<Tab>", "<cmd> bnext <cr>", desc = "Next Buffer" },
@@ -45,9 +44,9 @@ wk.add({
   {"<leader>t", "<cmd> ToggleTerm <cr>", desc = "Toggle Terminal" },
 
   --Neo Test
-  { "<leader>r", "<cmd> lua require('neotest').run.run() <cr>", desc = "Run Current Test" },
-  { "<leader>rr", "<cmd> lua require('neotest').run.run(vim.fn.expand('%')) <cr>", desc = "Run All Tests in File" },
-  { "<leader>ss", "<cmd> lua require('neotest').summary.toggle() <cr>", desc = "Show Test Summary" },
+  -- { "<leader>r", "<cmd> lua require('neotest').run.run() <cr>", desc = "Run Current Test" },
+  -- { "<leader>rr", "<cmd> lua require('neotest').run.run(vim.fn.expand('%')) <cr>", desc = "Run All Tests in File" },
+  -- { "<leader>ss", "<cmd> lua require('neotest').summary.toggle() <cr>", desc = "Show Test Summary" },
 
   --LspSaga
   { "gd", "<cmd> Lspsaga goto_definition <cr>", desc = "Go to Definition" },
@@ -62,6 +61,9 @@ wk.add({
 
   -- Code Folding
   { "F", "<cmd> lua toggle_fold() <cr>", desc = "Toggle code folding" },
+
+  -- Seachbox 
+  { "<leader>r", ":SearchBoxReplace -- <C-r>=expand('<cword>')<CR><CR>", desc = "Replace all ocurrences for word under cursor" },
   
   --Debugger
   -- TODO

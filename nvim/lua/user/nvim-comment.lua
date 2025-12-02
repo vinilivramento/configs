@@ -13,6 +13,6 @@ require('nvim_comment').setup {
   operator_mapping = "gc",
   -- -- text object mapping, comment chunk,,
   comment_chunk_text_object = "ic",
-  -- Hook function to call before commenting takes place
-  hook = nil
+  -- Can disable with nil
+  hook = nil 
 }

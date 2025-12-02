@@ -1,5 +1,12 @@
 require("mason").setup()
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup {
+    automatic_enable = false
+}
+
+-- To better investigate lsg issues 
+-- vim.lsp.set_log_level("debug")
+
+vim.lsp.inlay_hint.enable(true)
 
 --- LspSaga
 
@@ -18,7 +25,7 @@ require("lspsaga").setup({
 
 --- LspConfig
 
-local lspconfig = require('lspconfig')
+require('lspconfig')
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -38,87 +45,115 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 --- Ansible 
 
-lspconfig.ansiblels.setup({})
+-- lspconfig.ansiblels.setup({})
+vim.lsp.config("ansiblels", {})
+vim.lsp.enable({"ansiblels"})
 
 --- Bash
 
-lspconfig.bashls.setup({})
+vim.lsp.config("bashls", {})
+vim.lsp.enable({"bashls"})
 
 --- C/C++
 
-lspconfig.clangd.setup({
+vim.lsp.config("clangd", {
     cmd = { 'clangd' },
     filetypes = { "c", "cpp", "cc", "mpp", "ixx", "objc", "objcpp", "cuda" },
     single_file_support = true,
     capabilities = require("cmp_nvim_lsp").default_capabilities(),
     on_attach = function(client, bufnr)
-      navic.attach(client, bufnr)
-      require("clangd_extensions.inlay_hints").setup_autocmd()
-      require("clangd_extensions.inlay_hints").set_inlay_hints()
+      -- navic.attach(client, bufnr)
+      -- require("clangd_extensions.inlay_hints").setup_autocmd()
+      -- require("clangd_extensions.inlay_hints").set_inlay_hints()
     end,
 })
+vim.lsp.enable({"clangd"})
 
 --- Cmake
---
-lspconfig.cmake.setup({
+
+vim.lsp.config("cmake", {
     cmd = { 'cmake-language-server' },
     buildDirectory = { 'build' },
     filetypes = { 'cmake' },
 })
+vim.lsp.enable({"cmake"})
 
 --- Rust
 
-require("rust-tools").setup({
-  server = {
-    on_attach = function(_, bufnr)
-      -- Hover actions
-      -- vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-      -- Code action groups
-      -- vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-    end,
+-- Vini: Currently disabled to use rustaceanvim
+-- vim.lsp.config("rust-tools", {
+--   server = {
+--     on_attach = function(_, bufnr)
+--       -- Hover actions
+--       -- vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+--       -- Code action groups
+--       -- vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+--     end,
+--   },
+-- })
+-- vim.lsp.enable({"rust-tools"})
+
+vim.g.rustaceanvim = {
+  -- Plugin configuration
+  tools = {
   },
-})
+  -- LSP configuration
+  server = {
+    on_attach = function(client, bufnr)
+      -- you can also put keymaps in here
+    end,
+    default_settings = {
+      -- rust-analyzer language server configuration
+      ['rust-analyzer'] = {
+          linkedProjects = {
+            vim.fn.getcwd() .. '/Cargo.toml', -- Avoid running rust-analyzer for entire workspace
+          },
+          workspace = {
+            -- workspaceFolders = {vim.loop.cwd() },
+            -- autoReload = false,
+          },
+          inlayHints= {
+              enable = true,
+          },
+          cargo = {
+            -- loadOutDirsFromCheck = true,  -- Adjust as needed
+            allFeatures = false,          -- Disable all features if not needed
+            autoreload = true,            -- re-run if Cargo.toml has been updated
+          },
+          procMacro = {
+            enable =  true,                -- Enable procedural macros if needed
+          },
+          diagnostics = {
+            enable = true,                -- Adjust diagnostics settings
+            enableExperimental = false,   -- Disable experimental features
+            disabled = {"unresolved-proc-macro"}  -- Disable warnings related to macros
+          },
+          check = {
+            command = "clippy",           -- Use `clippy` for additional linting
+          },
+      },
+    },
+  },
+  -- DAP configuration
+  dap = {
+  },
+}
 
---
--- vim.g.rustaceanvim = function()
---     local mason_registry = require("mason-registry")
-
---     local codelldb_root = mason_registry.get_package("codelldb"):get_install_path() .. "/extension/"
---     local codelldb_path = codelldb_root .. "adapter/codelldb"
---     local liblldb_path = codelldb_root .. "lldb/lib/liblldb.so"
-
---     local cfg = require("rustaceanvim.config")
-
---     return {
---           dap = {
---             adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
---           },
---           inlay_hints = {
---             highlight = "NonText",
---           },
---           tools = {
---             hover_actions = {
---               auto_focus = true,
---             },
---           },
---           server = {
---             on_attach = function(client, bufnr)
---               require("lsp-inlayhints").on_attach(client, bufnr)
---             end,
---           },
---           default_settings = {
---             ['rust-analyzer'] = {
---                 ['check'] = {
---                     ['command'] = 'clippy'
---                 }
---             }
---           }
---     }
--- end
+-- Temporary fix for error on rust-analyzer "server cancelled request": https://github.com/neovim/neovim/issues/30985
+for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
+    local default_diagnostic_handler = vim.lsp.handlers[method]
+    vim.lsp.handlers[method] = function(err, result, context, config)
+        if err ~= nil and err.code == -32802 then
+            return
+        end
+        return default_diagnostic_handler(err, result, context, config)
+    end
+end
 
 --- Python
 
-lspconfig.pyright.setup({})
+vim.lsp.config("pyright", {})
+vim.lsp.enable({"pyright"})
 
 --- 
 
@@ -201,7 +236,13 @@ cmp.setup({
 vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
 
 -- diagnostics signs
-vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
-vim.fn.sign_define("DiagnosticSignWarn",  { text = " ", texthl = "DiagnosticSignWarn" })
-vim.fn.sign_define("DiagnosticSignInfo",  { text = " ", texthl = "DiagnosticSignInfo" })
-vim.fn.sign_define("DiagnosticSignHint",  { text = "", texthl = "DiagnosticSignHint" })
+vim.diagnostic.config({
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = " ",
+      [vim.diagnostic.severity.WARN]  = " ",
+      [vim.diagnostic.severity.INFO]  = " ",
+      [vim.diagnostic.severity.HINT]  = "",
+    },
+  },
+})

@@ -7,6 +7,13 @@ teleconfig.setup {
             "build/",
             "target/",
             ".clangd/",
+            ".venv/",
+            ".mypy/",
+            ".mypy_cache/",
+            ".ruff_cache/",
+            "__pycache__/",
+            ".pytest_cache/",
+            "_deps",
             "LICENSE*"
         },
     },
